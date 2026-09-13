@@ -1,0 +1,510 @@
+.review-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 330px;
+  height: 100%;
+
+  padding: 28px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(91, 63, 40, 0.12);
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fbf5eb 0%,
+      #f5eadb 100%
+    );
+
+  box-shadow:
+    0 12px 35px rgba(68, 45, 28, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.35s ease;
+
+  // ==================================
+  // DECORATIVE CIRCLE
+  // ==================================
+
+  &::before {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    top: -90px;
+    right: -75px;
+
+    border: 1px solid rgba(216, 168, 92, 0.14);
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transition:
+      transform 0.6s ease,
+      border-color 0.4s ease;
+  }
+
+  &::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 28px;
+    right: 28px;
+
+    height: 2px;
+
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(216, 168, 92, 0.6),
+        transparent
+      );
+
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  // ==================================
+  // TOP
+  // ==================================
+
+  &__top {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+  }
+
+  // ==================================
+  // QUOTE ICON
+  // ==================================
+
+  &__quote {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(168, 112, 55, 0.18);
+    border-radius: 50%;
+
+    background: rgba(216, 168, 92, 0.09);
+
+    color: #a06a35;
+
+    transition:
+      background 0.35s ease,
+      color 0.35s ease,
+      transform 0.4s ease;
+
+    svg {
+      stroke-width: 1.5;
+    }
+  }
+
+  // ==================================
+  // STARS
+  // ==================================
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: #c28a43;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  // ==================================
+  // REVIEW TEXT
+  // ==================================
+
+  &__text {
+    position: relative;
+    z-index: 2;
+
+    flex: 1;
+
+    margin: 0;
+
+    color: #3a2a1e;
+
+    font-family: var(--font-display);
+
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1.45;
+
+    letter-spacing: -0.015em;
+  }
+
+  // ==================================
+  // BOTTOM
+  // ==================================
+
+  &__bottom {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 28px;
+    padding-top: 19px;
+
+    border-top: 1px solid rgba(91, 63, 40, 0.1);
+  }
+
+  // ==================================
+  // PERSON
+  // ==================================
+
+  &__person {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-width: 0;
+
+    > div:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    strong {
+      color: #39281c;
+
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    span {
+      color: rgba(75, 54, 38, 0.52);
+
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  }
+
+  // ==================================
+  // AVATAR
+  // ==================================
+
+  &__avatar {
+    width: 37px;
+    height: 37px;
+
+    flex-shrink: 0;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(216, 168, 92, 0.3);
+    border-radius: 50%;
+
+    background:
+      linear-gradient(
+        135deg,
+        #ead3ae,
+        #d6b88d
+      );
+
+    color: #5b3e25 !important;
+
+    font-family: var(--font-display);
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+  }
+
+  // ==================================
+  // ARROW
+  // ==================================
+
+  &__arrow {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(91, 63, 40, 0.13);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.42);
+
+    color: #765435;
+
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      background 0.3s ease,
+      border-color 0.3s ease,
+      color 0.3s ease;
+
+    svg {
+      transition: transform 0.35s ease;
+    }
+  }
+
+  // ==================================
+  // FEATURED BADGE
+  // ==================================
+
+  &__badge {
+    position: absolute;
+
+    top: 21px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border: 1px solid rgba(216, 168, 92, 0.25);
+    border-radius: 999px;
+
+    background: rgba(248, 239, 224, 0.9);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    span {
+      color: #9a6231;
+
+      font-size: 6px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+  }
+
+  // ==================================
+  // HOVER
+  // ==================================
+
+  &:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(168, 112, 55, 0.2);
+
+    box-shadow:
+      0 24px 55px rgba(68, 45, 28, 0.1),
+      0 5px 15px rgba(68, 45, 28, 0.04);
+
+    &::before {
+      transform: scale(1.15);
+      border-color: rgba(216, 168, 92, 0.23);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+
+    .review-card__quote {
+      background: #d8a85c;
+      color: #2c2017;
+
+      transform: rotate(-5deg);
+    }
+
+    .review-card__arrow {
+      background: #d8a85c;
+      border-color: #d8a85c;
+      color: #2c2017;
+
+      transform: translateY(-2px);
+
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+
+  // ==================================
+  // FEATURED CARD
+  // ==================================
+
+  &--featured {
+    background:
+      linear-gradient(
+        145deg,
+        #fdf7ed 0%,
+        #f3e5d1 100%
+      );
+
+    border-color: rgba(216, 168, 92, 0.25);
+
+    .review-card__quote {
+      background: rgba(216, 168, 92, 0.13);
+    }
+
+    .review-card__badge {
+      opacity: 1;
+    }
+
+    .review-card__text {
+      color: #302116;
+    }
+  }
+}
+
+// ====================================
+// TABLET
+// ====================================
+
+@media (max-width: 900px) {
+  .review-card {
+    min-height: 310px;
+
+    padding: 24px;
+
+    &__text {
+      font-size: 21px;
+    }
+
+    &__top {
+      margin-bottom: 24px;
+    }
+
+    &__bottom {
+      margin-top: 24px;
+    }
+  }
+}
+
+// ====================================
+// MOBILE
+// ====================================
+
+@media (max-width: 640px) {
+  .review-card {
+    min-height: 290px;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    &__top {
+      margin-bottom: 22px;
+    }
+
+    &__quote {
+      width: 39px;
+      height: 39px;
+    }
+
+    &__stars {
+      gap: 3px;
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    &__text {
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    &__bottom {
+      margin-top: 22px;
+      padding-top: 17px;
+    }
+
+    &__arrow {
+      width: 32px;
+      height: 32px;
+    }
+
+    &__badge {
+      top: 17px;
+    }
+  }
+}
+
+// ====================================
+// SMALL MOBILE
+// ====================================
+
+@media (max-width: 420px) {
+  .review-card {
+    min-height: 270px;
+
+    padding: 19px;
+
+    &__text {
+      font-size: 18px;
+    }
+
+    &__person {
+      gap: 9px;
+
+      strong {
+        font-size: 9px;
+      }
+
+      span {
+        font-size: 7px;
+      }
+    }
+
+    &__avatar {
+      width: 34px;
+      height: 34px;
+    }
+  }
+}
+
+// ====================================
+// REDUCED MOTION
+// ====================================
+
+@media (prefers-reduced-motion: reduce) {
+  .review-card,
+  .review-card * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .review-card:hover {
+    transform: none;
+  }
+}

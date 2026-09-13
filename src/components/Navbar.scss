@@ -1,0 +1,727 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+
+  width: 100%;
+  padding: 16px 24px;
+
+  pointer-events: none;
+
+  &__shell {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    pointer-events: auto;
+
+    border: 1px solid rgba(235, 203, 150, 0.16);
+    border-radius: 18px;
+
+    background:
+      linear-gradient(
+        105deg,
+        rgba(32, 23, 16, 0.94),
+        rgba(18, 15, 12, 0.9)
+      );
+
+    box-shadow:
+      0 18px 60px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+
+  &__inner {
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 22px;
+  }
+
+  // ==================================
+  // BRAND
+  // ==================================
+
+  &__brand {
+    display: flex;
+    align-items: center;
+
+    min-width: 245px;
+
+    color: #f5ead8;
+    text-decoration: none;
+  }
+
+  // ==================================
+  // PREMIUM LOGO
+  // ==================================
+
+  &__logo {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 78px;
+
+    line-height: 1;
+
+    // Main NAMO
+    &-main {
+      display: block;
+
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 600;
+
+      letter-spacing: 0.08em;
+
+      color: #f5ead8;
+
+      line-height: 0.9;
+
+      animation: logoSoftGlow 5s ease-in-out infinite;
+    }
+
+    // RESTRO
+    &-restro {
+      display: block;
+
+      margin-top: 7px;
+
+      color: #d7a85c;
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: 0.42em;
+
+      line-height: 1;
+
+      text-align: center;
+
+      padding-left: 0.42em;
+
+      animation: logoGoldGlow 5s ease-in-out infinite;
+    }
+
+    // SKIT
+    &-skit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 5px;
+
+      color: rgba(244, 229, 204, 0.5);
+
+      font-family: var(--font-display);
+
+      font-size: 5.5px;
+      font-style: normal;
+      font-weight: 600;
+
+      letter-spacing: 0.32em;
+
+      line-height: 1;
+
+      white-space: nowrap;
+
+      padding-left: 0.32em;
+
+      animation: skitGlow 5s ease-in-out infinite;
+
+      span {
+        display: block;
+
+        width: 8px;
+        height: 1px;
+
+        margin-top: 1px;
+
+        background: rgba(216, 168, 92, 0.32);
+
+        transition: background 0.4s ease;
+      }
+
+      span:first-child {
+        margin-right: 5px;
+      }
+
+      span:last-child {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  // ==================================
+  // BRAND DIVIDER
+  // ==================================
+
+  &__brand-line {
+    width: 1px;
+    height: 34px;
+
+    margin: 0 18px;
+
+    background: rgba(231, 190, 119, 0.3);
+  }
+
+  // ==================================
+  // TAGLINE
+  // ==================================
+
+  &__tagline {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    color: rgba(244, 229, 204, 0.5);
+
+    font-size: 7px;
+    font-weight: 600;
+
+    letter-spacing: 0.22em;
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  // ==================================
+  // NAVIGATION
+  // ==================================
+
+  &__nav {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+  }
+
+  &__link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 12px 13px;
+
+    color: rgba(245, 235, 219, 0.64);
+
+    font-size: 12px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+      color 0.3s ease,
+      background 0.3s ease;
+
+    span {
+      color: rgba(216, 168, 92, 0);
+
+      font-size: 7px;
+      letter-spacing: 0.08em;
+
+      transform: translateY(-5px);
+
+      transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    &::after {
+      content: "";
+
+      position: absolute;
+
+      left: 13px;
+      right: 13px;
+      bottom: 3px;
+
+      height: 1px;
+
+      background: #d8a85c;
+
+      transform: scaleX(0);
+      transform-origin: center;
+
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover,
+    &--active {
+      color: #f8ecda;
+
+      span {
+        color: #d8a85c;
+        transform: translateY(-2px);
+      }
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // ==================================
+  // ACTIONS
+  // ==================================
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    min-width: 245px;
+  }
+
+  // ==================================
+  // OPENING HOURS
+  // ==================================
+
+  &__hours {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding-right: 13px;
+
+    border-right: 1px solid rgba(235, 203, 150, 0.16);
+
+    color: #d8a85c;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      gap: 3px;
+    }
+
+    span {
+      color: rgba(245, 235, 219, 0.4);
+
+      font-size: 7px;
+      font-weight: 600;
+
+      letter-spacing: 0.14em;
+    }
+
+    strong {
+      color: #f2dfbf;
+
+      font-size: 9px;
+      font-weight: 600;
+
+      letter-spacing: 0.08em;
+    }
+  }
+
+  // ==================================
+  // RESERVATION
+  // ==================================
+
+  &__reservation {
+    min-height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(221, 174, 94, 0.62);
+    border-radius: 999px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(218, 171, 91, 0.12),
+        rgba(218, 171, 91, 0.035)
+      );
+
+    color: #f0d39e;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+
+    text-decoration: none;
+
+    transition:
+      background 0.35s ease,
+      color 0.35s ease,
+      border-color 0.35s ease,
+      transform 0.35s ease;
+
+    svg:last-child {
+      transition: transform 0.35s ease;
+    }
+
+    &:hover {
+      background: #d8a85c;
+      border-color: #d8a85c;
+
+      color: #21170f;
+
+      transform: translateY(-2px);
+
+      svg:last-child {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+
+  // ==================================
+  // MOBILE MENU BUTTON
+  // ==================================
+
+  &__menu {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(235, 203, 150, 0.2);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    color: #f4e5ca;
+
+    cursor: pointer;
+
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      background: rgba(216, 168, 92, 0.12);
+
+      border-color: rgba(216, 168, 92, 0.55);
+
+      transform: rotate(3deg);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+// ====================================
+// LOGO ANIMATIONS
+// ====================================
+
+@keyframes logoSoftGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 0 rgba(245, 218, 170, 0);
+  }
+
+  50% {
+    text-shadow:
+      0 0 14px rgba(245, 218, 170, 0.16);
+  }
+}
+
+@keyframes logoGoldGlow {
+  0%,
+  100% {
+    opacity: 0.82;
+
+    text-shadow:
+      0 0 0 rgba(216, 168, 92, 0);
+  }
+
+  50% {
+    opacity: 1;
+
+    text-shadow:
+      0 0 10px rgba(216, 168, 92, 0.3);
+  }
+}
+
+@keyframes skitGlow {
+  0%,
+  100% {
+    opacity: 0.48;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+// ====================================
+// TABLET
+// ====================================
+
+@media (max-width: 1150px) {
+  .navbar {
+    &__brand {
+      min-width: auto;
+    }
+
+    &__tagline {
+      display: none;
+    }
+
+    &__brand-line {
+      margin-right: 0;
+    }
+
+    &__actions {
+      min-width: auto;
+    }
+
+    &__hours {
+      display: none;
+    }
+
+    &__nav {
+      gap: 0;
+    }
+
+    &__link {
+      padding-inline: 9px;
+    }
+  }
+}
+
+// ====================================
+// MOBILE
+// ====================================
+
+@media (max-width: 820px) {
+  .navbar {
+    padding: 12px 14px;
+
+    &__shell {
+      border-radius: 15px;
+    }
+
+    &__inner {
+      min-height: 68px;
+
+      padding: 0 15px;
+    }
+
+    // ------------------------------
+    // MOBILE LOGO
+    // ------------------------------
+
+    &__logo {
+      min-width: 67px;
+
+      &-main {
+        font-size: 22px;
+      }
+
+      &-restro {
+        margin-top: 6px;
+
+        font-size: 7px;
+
+        letter-spacing: 0.4em;
+        padding-left: 0.4em;
+      }
+
+      &-skit {
+        margin-top: 4px;
+
+        font-size: 4.8px;
+
+        letter-spacing: 0.28em;
+        padding-left: 0.28em;
+
+        span {
+          width: 6px;
+        }
+
+        span:first-child {
+          margin-right: 3px;
+        }
+
+        span:last-child {
+          margin-left: 3px;
+        }
+      }
+    }
+
+    &__brand-line {
+      height: 30px;
+
+      margin-left: 13px;
+      margin-right: 0;
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__actions {
+      gap: 8px;
+    }
+
+    &__reservation {
+      display: none;
+    }
+
+    &__menu {
+      display: flex;
+    }
+  }
+}
+
+// ====================================
+// SMALL MOBILE
+// ====================================
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px;
+
+    &__shell {
+      border-radius: 14px;
+    }
+
+    &__inner {
+      min-height: 62px;
+
+      padding: 0 12px;
+    }
+
+    &__logo {
+      min-width: 61px;
+
+      &-main {
+        font-size: 20px;
+      }
+
+      &-restro {
+        margin-top: 5px;
+
+        font-size: 6px;
+
+        letter-spacing: 0.38em;
+        padding-left: 0.38em;
+      }
+
+      &-skit {
+        margin-top: 3px;
+
+        font-size: 4.2px;
+
+        letter-spacing: 0.26em;
+        padding-left: 0.26em;
+
+        span {
+          width: 5px;
+        }
+
+        span:first-child {
+          margin-right: 2px;
+        }
+
+        span:last-child {
+          margin-left: 2px;
+        }
+      }
+    }
+
+    &__brand-line {
+      height: 26px;
+
+      margin-left: 10px;
+    }
+
+    &__menu {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+// ====================================
+// VERY SMALL DEVICES
+// ====================================
+
+@media (max-width: 360px) {
+  .navbar {
+    padding-inline: 8px;
+
+    &__inner {
+      padding-inline: 10px;
+    }
+
+    &__logo {
+      min-width: 57px;
+
+      &-main {
+        font-size: 18px;
+      }
+
+      &-restro {
+        font-size: 5.5px;
+      }
+
+      &-skit {
+        font-size: 4px;
+      }
+    }
+
+    &__brand-line {
+      margin-left: 8px;
+    }
+  }
+}
+
+// ====================================
+// REDUCED MOTION
+// ====================================
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbar * {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+  }
+}

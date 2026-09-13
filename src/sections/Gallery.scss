@@ -1,0 +1,778 @@
+.gallery {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  padding: 120px 0 90px;
+
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(190, 132, 58, 0.09),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(208, 158, 82, 0.06),
+      transparent 28%
+    ),
+    #0b0908;
+
+  color: #f5ede2;
+
+  /* =========================================
+     AMBIENT LIGHT
+  ========================================= */
+
+  &__ambient {
+    position: absolute;
+
+    width: 480px;
+    height: 480px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(110px);
+
+    opacity: 0.2;
+
+    z-index: -1;
+
+    &--one {
+      top: -300px;
+      left: -220px;
+
+      background: rgba(181, 116, 45, 0.2);
+    }
+
+    &--two {
+      right: -280px;
+      bottom: -330px;
+
+      background: rgba(206, 153, 73, 0.13);
+    }
+  }
+
+  /* =========================================
+     CONTAINER
+  ========================================= */
+
+  .container {
+    position: relative;
+    z-index: 2;
+
+    width: min(1700px, calc(100% - 72px));
+
+    margin: 0 auto;
+  }
+
+  /* =========================================
+     HEADER
+  ========================================= */
+
+  &__header {
+    margin-bottom: 58px;
+  }
+
+  &__eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin-bottom: 24px;
+
+    color: #c99756;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.32em;
+
+    text-transform: uppercase;
+
+    span {
+      width: 42px;
+      height: 1px;
+
+      background: rgba(201, 151, 86, 0.65);
+    }
+  }
+
+  &__heading {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1.3fr)
+      minmax(300px, 0.7fr);
+
+    align-items: end;
+
+    gap: 80px;
+  }
+
+  &__heading-main {
+    min-width: 0;
+  }
+
+  &__mini {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: rgba(245, 237, 226, 0.38);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.23em;
+  }
+
+  &__heading h2 {
+    margin: 0;
+
+    font-family:
+      Georgia,
+      "Times New Roman",
+      serif;
+
+    font-size: clamp(58px, 8vw, 118px);
+
+    font-weight: 400;
+
+    line-height: 0.85;
+
+    letter-spacing: -0.065em;
+
+    em {
+      color: #c99756;
+
+      font-style: italic;
+    }
+  }
+
+  &__intro {
+    padding-bottom: 5px;
+
+    p {
+      max-width: 425px;
+
+      margin: 0 0 22px;
+
+      color: rgba(245, 237, 226, 0.5);
+
+      font-size: 13px;
+
+      line-height: 1.85;
+    }
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color: rgba(245, 237, 226, 0.68);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.19em;
+  }
+
+  &__location-dot {
+    width: 6px;
+    height: 6px;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background: #ce9953;
+
+    box-shadow:
+      0 0 0 4px rgba(206, 153, 83, 0.08),
+      0 0 14px rgba(206, 153, 83, 0.35);
+  }
+
+  /* =========================================
+     SLIDER
+  ========================================= */
+
+  &__slider {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    margin-bottom: 14px;
+
+    /*
+      Edge fade.
+      Purely visual.
+    */
+
+    &::before,
+    &::after {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      bottom: 0;
+
+      z-index: 5;
+
+      width: 85px;
+
+      pointer-events: none;
+    }
+
+    &::before {
+      left: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          #0b0908 0%,
+          rgba(11, 9, 8, 0.8) 30%,
+          transparent 100%
+        );
+    }
+
+    &::after {
+      right: 0;
+
+      background:
+        linear-gradient(
+          270deg,
+          #0b0908 0%,
+          rgba(11, 9, 8, 0.8) 30%,
+          transparent 100%
+        );
+    }
+  }
+
+  /* =========================================
+     TRACK
+  ========================================= */
+
+  &__track {
+    display: flex;
+
+    width: max-content;
+
+    gap: 14px;
+
+    /*
+      Only transform is animated.
+      This keeps the marquee lightweight.
+    */
+
+    animation-timing-function: linear;
+
+    animation-iteration-count: infinite;
+
+    animation-fill-mode: both;
+
+    &--left {
+      animation:
+        gallery-left
+        55s
+        linear
+        infinite;
+    }
+
+    &--right {
+      animation:
+        gallery-right
+        60s
+        linear
+        infinite;
+    }
+  }
+
+  /* =========================================
+     IMAGE CARD
+  ========================================= */
+
+  &__item {
+    position: relative;
+
+    flex: 0 0 420px;
+
+    width: 420px;
+    height: 275px;
+
+    overflow: hidden;
+
+    border: 1px solid
+      rgba(244, 222, 188, 0.11);
+
+    border-radius: 22px;
+
+    background: #15110e;
+
+    box-shadow:
+      0 14px 38px
+      rgba(0, 0, 0, 0.23);
+
+    /*
+      No expensive continuous transforms
+      on individual cards.
+    */
+
+    img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transform: scale(1.01);
+
+      opacity: 0.95;
+
+      transition:
+        transform 0.7s
+        cubic-bezier(0.2, 0.7, 0.2, 1),
+        opacity 0.4s ease;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.05);
+
+        opacity: 1;
+      }
+    }
+  }
+
+  /* =========================================
+     IMAGE OVERLAY
+  ========================================= */
+
+  &__item-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 6, 4, 0) 40%,
+        rgba(8, 6, 4, 0.32) 100%
+      );
+  }
+
+  /* =========================================
+     BOTTOM
+  ========================================= */
+
+  &__bottom {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      auto
+      1fr;
+
+    align-items: center;
+
+    gap: 28px;
+
+    margin-top: 36px;
+
+    padding-top: 25px;
+
+    border-top:
+      1px solid
+      rgba(245, 237, 226, 0.09);
+  }
+
+  &__bottom-line {
+    width: 72px;
+    height: 1px;
+
+    background:
+      linear-gradient(
+        90deg,
+        #a9703b,
+        transparent
+      );
+  }
+
+  &__bottom p {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin: 0;
+
+    color:
+      rgba(245, 237, 226, 0.52);
+
+    font-family:
+      Georgia,
+      "Times New Roman",
+      serif;
+
+    font-size: 15px;
+
+    white-space: nowrap;
+
+    span {
+      color: #d09a58;
+    }
+  }
+
+  &__bottom a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    color: #eadcc9;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    transition: color 0.3s ease;
+
+    svg {
+      color: #d29a55;
+
+      transition:
+        transform 0.3s ease;
+    }
+
+    &:hover {
+      color: #ffffff;
+
+      svg {
+        transform:
+          translate3d(4px, -4px, 0);
+      }
+    }
+  }
+}
+
+
+/* =========================================================
+   SEAMLESS INFINITE MARQUEE
+========================================================= */
+
+/*
+  JSX:
+  [original images] + [same images]
+
+  Therefore -50% reaches the exact
+  beginning of the duplicate set.
+*/
+
+@keyframes gallery-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gallery-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1500px) {
+  .gallery {
+    padding-top: 140px;
+
+    &__header {
+      margin-bottom: 65px;
+    }
+
+    &__item {
+      flex-basis: 500px;
+
+      width: 500px;
+      height: 315px;
+    }
+
+    &__track {
+      gap: 17px;
+    }
+
+    &__slider {
+      margin-bottom: 17px;
+    }
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .gallery {
+    padding: 100px 0 75px;
+
+    .container {
+      width: calc(100% - 42px);
+    }
+
+    &__heading {
+      grid-template-columns: 1fr;
+
+      gap: 28px;
+    }
+
+    &__intro {
+      p {
+        max-width: 650px;
+      }
+    }
+
+    &__item {
+      flex-basis: 360px;
+
+      width: 360px;
+      height: 250px;
+
+      border-radius: 20px;
+    }
+
+    &__track {
+      gap: 12px;
+
+      &--left {
+        animation-duration: 50s;
+      }
+
+      &--right {
+        animation-duration: 55s;
+      }
+    }
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .gallery {
+    padding: 78px 0 60px;
+
+    .container {
+      width: calc(100% - 20px);
+    }
+
+    &__header {
+      margin-bottom: 36px;
+    }
+
+    &__eyebrow {
+      gap: 9px;
+
+      margin-bottom: 20px;
+
+      font-size: 7px;
+
+      letter-spacing: 0.25em;
+
+      span {
+        width: 25px;
+      }
+    }
+
+    &__mini {
+      margin-bottom: 12px;
+
+      font-size: 7px;
+
+      letter-spacing: 0.17em;
+    }
+
+    &__heading h2 {
+      font-size:
+        clamp(48px, 16vw, 72px);
+
+      line-height: 0.88;
+    }
+
+    &__intro {
+      padding-top: 9px;
+
+      p {
+        margin-bottom: 18px;
+
+        font-size: 12px;
+
+        line-height: 1.75;
+      }
+    }
+
+    &__location {
+      font-size: 7px;
+
+      letter-spacing: 0.16em;
+    }
+
+    /* =====================================
+       MOBILE SLIDER
+    ===================================== */
+
+    &__slider {
+      margin-bottom: 9px;
+
+      &::before,
+      &::after {
+        width: 45px;
+      }
+    }
+
+    &__track {
+      gap: 9px;
+
+      &--left {
+        animation-duration: 38s;
+      }
+
+      &--right {
+        animation-duration: 42s;
+      }
+    }
+
+    &__item {
+      flex-basis: 285px;
+
+      width: 285px;
+      height: 200px;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 10px 28px
+        rgba(0, 0, 0, 0.23);
+
+      &:hover {
+        img {
+          transform: scale(1.01);
+        }
+      }
+
+      img {
+        opacity: 1;
+      }
+    }
+
+    /* =====================================
+       BOTTOM
+    ===================================== */
+
+    &__bottom {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: flex-start;
+
+      gap: 16px;
+
+      margin-top: 25px;
+
+      padding-top: 20px;
+    }
+
+    &__bottom-line {
+      width: 40px;
+    }
+
+    &__bottom p {
+      font-size: 14px;
+    }
+
+    &__bottom a {
+      justify-content: flex-start;
+
+      font-size: 8px;
+    }
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+  .gallery {
+    padding-top: 65px;
+
+    &__heading h2 {
+      font-size: 48px;
+    }
+
+    &__item {
+      flex-basis: 255px;
+
+      width: 255px;
+      height: 180px;
+
+      border-radius: 15px;
+    }
+
+    &__track {
+      gap: 8px;
+    }
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__track {
+    animation: none;
+
+    transform: none;
+  }
+
+  .gallery__item img,
+  .gallery__bottom a,
+  .gallery__bottom a svg {
+    transition: none;
+  }
+}
