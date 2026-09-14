@@ -9,7 +9,7 @@ import Location from "../sections/Location";
 import CTA from "../sections/CTA";
 import Footer from "../sections/Footer";
 
-function Home() {4
+function Home() {
   return (
     <>
       <Hero />
