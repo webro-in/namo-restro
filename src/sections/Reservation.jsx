@@ -32,13 +32,47 @@ function Reservation() {
     }));
   };
 
+  /* =========================================
+     WHATSAPP RESERVATION
+  ========================================== */
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const restaurantNumber = "918829017272";
+
+    const whatsappMessage = `NEW RESERVATION REQUEST
+Namo Restro
+
+Name: ${form.name}
+Phone: ${form.phone}
+Guests: ${form.guests}
+Date: ${form.date}
+Time: ${form.time}
+Occasion: ${form.occasion || "Not specified"}
+Special Request: ${form.message || "None"}
+
+Please confirm my reservation.`;
+
+    const whatsappUrl =
+      `https://wa.me/${restaurantNumber}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
+
+    window.open(
+      whatsappUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
     setSubmitted(true);
   };
 
   return (
-    <section className="reservation section" id="reservation">
+    <section
+      className="reservation section"
+      id="reservation"
+    >
       {/* Ambient Background */}
       <div className="reservation__glow reservation__glow--one" />
       <div className="reservation__glow reservation__glow--two" />
@@ -77,44 +111,67 @@ function Reservation() {
 
             {/* Opening Hours */}
             <div className="reservation__open">
+
               <div className="reservation__open-icon">
-                <Clock3 size={18} strokeWidth={1.5} />
+                <Clock3
+                  size={18}
+                  strokeWidth={1.5}
+                />
               </div>
 
               <div>
                 <span>WE'RE OPEN</span>
-                <strong>24 Hours · Every Day</strong>
+
+                <strong>
+                  24 Hours · Every Day
+                </strong>
               </div>
 
               <span className="reservation__open-status">
                 OPEN
               </span>
+
             </div>
 
             {/* Contact */}
             <div className="reservation__contact">
-              <span>Prefer to call?</span>
+
+              <span>
+                Prefer to call?
+              </span>
 
               <a href="tel:+918829017272">
-                <Phone size={14} strokeWidth={1.6} />
 
-                <span>+91 88290 17272</span>
+                <Phone
+                  size={14}
+                  strokeWidth={1.6}
+                />
+
+                <span>
+                  +91 88290 17272
+                </span>
 
                 <ArrowUpRight
                   size={14}
                   strokeWidth={1.6}
                 />
+
               </a>
             </div>
 
             {/* Note */}
             <div className="reservation__note">
-              <Sparkles size={14} strokeWidth={1.5} />
+
+              <Sparkles
+                size={14}
+                strokeWidth={1.5}
+              />
 
               <span>
                 Perfect for birthdays, gatherings,
                 date nights & celebrations.
               </span>
+
             </div>
           </div>
 
@@ -125,31 +182,41 @@ function Reservation() {
           <div className="reservation__card">
 
             <div className="reservation__card-glow" />
+
             <div className="reservation__card-number">
               01
             </div>
 
             {!submitted ? (
               <>
+
                 {/* Card Header */}
                 <div className="reservation__card-head">
 
                   <div>
-                    <span>01</span>
+
+                    <span>
+                      01
+                    </span>
 
                     <div>
-                      <small>RESERVATION</small>
+
+                      <small>
+                        RESERVATION
+                      </small>
 
                       <h3>
                         Book a table
                       </h3>
+
                     </div>
                   </div>
 
                   <p>
                     Fill in your details and
-                    we'll get you ready.
+                    we'll open WhatsApp for confirmation.
                   </p>
+
                 </div>
 
                 {/* =================================
@@ -163,9 +230,12 @@ function Reservation() {
 
                   {/* NAME */}
                   <div className="reservation__field reservation__field--full">
+
                     <label htmlFor="name">
                       Your Name
-                      <span>Required</span>
+                      <span>
+                        Required
+                      </span>
                     </label>
 
                     <input
@@ -181,13 +251,17 @@ function Reservation() {
                       }
                       required
                     />
+
                   </div>
 
                   {/* PHONE */}
                   <div className="reservation__field">
+
                     <label htmlFor="phone">
                       Phone Number
-                      <span>Required</span>
+                      <span>
+                        Required
+                      </span>
                     </label>
 
                     <input
@@ -203,16 +277,21 @@ function Reservation() {
                       }
                       required
                     />
+
                   </div>
 
                   {/* GUESTS */}
                   <div className="reservation__field">
+
                     <label htmlFor="guests">
                       Guests
-                      <span>Required</span>
+                      <span>
+                        Required
+                      </span>
                     </label>
 
                     <div className="reservation__select">
+
                       <Users
                         size={15}
                         strokeWidth={1.5}
@@ -228,6 +307,7 @@ function Reservation() {
                           )
                         }
                       >
+
                         <option value="1">
                           1 Guest
                         </option>
@@ -267,20 +347,26 @@ function Reservation() {
                         <option value="10+">
                           10+ Guests
                         </option>
+
                       </select>
 
                       <ChevronDown size={14} />
+
                     </div>
                   </div>
 
                   {/* DATE */}
                   <div className="reservation__field">
+
                     <label htmlFor="date">
                       Date
-                      <span>Required</span>
+                      <span>
+                        Required
+                      </span>
                     </label>
 
                     <div className="reservation__input-icon">
+
                       <CalendarDays
                         size={16}
                         strokeWidth={1.5}
@@ -298,6 +384,7 @@ function Reservation() {
                         }
                         required
                       />
+
                     </div>
                   </div>
 
@@ -306,31 +393,34 @@ function Reservation() {
                   ================================= */}
 
                   <div className="reservation__field">
+
                     <label htmlFor="time">
                       Preferred Time
-                      <span>Required</span>
+                      <span>
+                        Required
+                      </span>
                     </label>
 
                     <div
                       className={`reservation__time ${
-                        form.time ? "has-value" : ""
+                        form.time
+                          ? "has-value"
+                          : ""
                       }`}
                     >
-                      {/* Left Icon */}
+
                       <Clock3
                         className="reservation__time-icon"
                         size={18}
                         strokeWidth={1.5}
                       />
 
-                      {/* Custom Empty Text */}
                       {!form.time && (
                         <span className="reservation__time-placeholder">
                           Select a time
                         </span>
                       )}
 
-                      {/* Actual Time Input */}
                       <input
                         id="time"
                         type="time"
@@ -345,24 +435,30 @@ function Reservation() {
                         aria-label="Preferred time"
                       />
 
-                      {/* Right Picker Icon */}
                       <span className="reservation__time-picker">
+
                         <Clock3
                           size={16}
                           strokeWidth={1.5}
                         />
+
                       </span>
+
                     </div>
                   </div>
 
                   {/* OCCASION */}
                   <div className="reservation__field">
+
                     <label htmlFor="occasion">
                       Occasion
-                      <span>Optional</span>
+                      <span>
+                        Optional
+                      </span>
                     </label>
 
                     <div className="reservation__select">
+
                       <select
                         id="occasion"
                         value={form.occasion}
@@ -373,6 +469,7 @@ function Reservation() {
                           )
                         }
                       >
+
                         <option value="">
                           Select occasion
                         </option>
@@ -389,11 +486,11 @@ function Reservation() {
                           Anniversary
                         </option>
 
-                        <option value="Date">
+                        <option value="Date Night">
                           Date Night
                         </option>
 
-                        <option value="Family">
+                        <option value="Family Gathering">
                           Family Gathering
                         </option>
 
@@ -404,17 +501,22 @@ function Reservation() {
                         <option value="Other">
                           Other
                         </option>
+
                       </select>
 
                       <ChevronDown size={14} />
+
                     </div>
                   </div>
 
                   {/* SPECIAL REQUEST */}
                   <div className="reservation__field reservation__field--full">
+
                     <label htmlFor="message">
                       Special Request
-                      <span>Optional</span>
+                      <span>
+                        Optional
+                      </span>
                     </label>
 
                     <textarea
@@ -429,6 +531,7 @@ function Reservation() {
                         )
                       }
                     />
+
                   </div>
 
                   {/* SUBMIT */}
@@ -436,12 +539,15 @@ function Reservation() {
                     type="submit"
                     className="reservation__submit"
                   >
+
                     <span>
+
                       <small>
-                        LET'S MAKE IT SPECIAL
+                        RESERVE VIA WHATSAPP
                       </small>
 
-                      Request Reservation
+                      Send Reservation Request
+
                     </span>
 
                     <i>
@@ -450,17 +556,22 @@ function Reservation() {
                         strokeWidth={1.5}
                       />
                     </i>
+
                   </button>
+
                 </form>
 
                 {/* Secure Note */}
                 <div className="reservation__secure">
+
                   <Check size={13} />
 
                   <span>
-                    Reservation request · No payment required
+                    WhatsApp confirmation · No payment required
                   </span>
+
                 </div>
+
               </>
             ) : (
 
@@ -473,65 +584,78 @@ function Reservation() {
                 <div className="reservation__success-orbit" />
 
                 <div className="reservation__success-icon">
+
                   <Check
                     size={25}
                     strokeWidth={1.5}
                   />
+
                 </div>
 
                 <span>
-                  REQUEST RECEIVED
+                  WHATSAPP OPENED
                 </span>
 
                 <h3>
-                  See you at
-                  <em> Namo.</em>
+                  Almost
+                  <em> done.</em>
                 </h3>
 
                 <p>
                   Thanks, {form.name || "there"}.
-                  Your reservation request has been
-                  received. Our team will contact you
-                  shortly to confirm your table.
+                  Your reservation details have been
+                  prepared in WhatsApp. Press Send there
+                  to contact Namo Restro.
                 </p>
 
                 <div className="reservation__success-details">
 
                   <div>
+
                     <CalendarDays size={15} />
 
                     <span>
                       {form.date || "Selected date"}
                     </span>
+
                   </div>
 
                   <div>
+
                     <Clock3 size={15} />
 
                     <span>
                       {form.time || "Selected time"}
                     </span>
+
                   </div>
 
                   <div>
+
                     <Users size={15} />
 
                     <span>
                       {form.guests} guests
                     </span>
+
                   </div>
+
                 </div>
 
                 <button
                   type="button"
-                  onClick={() => setSubmitted(false)}
+                  onClick={() =>
+                    setSubmitted(false)
+                  }
                 >
                   Make another request
 
                   <ArrowUpRight size={13} />
                 </button>
+
               </div>
             )}
+
           </div>
         </div>
       </div>
